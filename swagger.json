@@ -1,0 +1,157 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ASP.NETCore_suvlo",
+    "contact": {
+      "name": "GJusz",
+      "email": "gkjuszczyk@gmail.com"
+    },
+    "version": "v1"
+  },
+  "paths": {
+    "/api/Articles/Article": {
+      "post": {
+        "tags": [
+          "Article"
+        ],
+        "summary": "Creates a blank article and returns its ID",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Article"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/vlo_main.Areas.Article.ArticleUpdateInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/vlo_main.Areas.Article.ArticleUpdateInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/vlo_main.Areas.Article.ArticleUpdateInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Articles/Article/AddEditor": {
+      "put": {
+        "tags": [
+          "Article"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/vlo_main.Areas.Article.UserArticleInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/vlo_main.Areas.Article.UserArticleInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/vlo_main.Areas.Article.UserArticleInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Articles/Article/RemoveEditor": {
+      "delete": {
+        "tags": [
+          "Article"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/vlo_main.Areas.Article.UserArticleInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/vlo_main.Areas.Article.UserArticleInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/vlo_main.Areas.Article.UserArticleInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "vlo_main.Areas.Article.ArticleUpdateInput": {
+        "required": [
+          "articleId",
+          "contentJson"
+        ],
+        "type": "object",
+        "properties": {
+          "articleId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "contentJson": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "vlo_main.Areas.Article.UserArticleInput": {
+        "required": [
+          "articleId",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "articleId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "userId": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

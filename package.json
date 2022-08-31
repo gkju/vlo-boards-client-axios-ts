@@ -1,0 +1,21 @@
+{
+  "name": "@gkju/vlo-boards-client-axios-ts",
+  "version": "1.0.0",
+  "packageManager": "pnpm@6.11.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "repository": "git://github.com/gkju/vlo-boards-client-axios-ts.git",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "scripts": {
+    "build": "tsc",
+    "regen": "npx @openapitools/openapi-generator-cli generate -g typescript-axios -o . -i swagger.json",
+    "prepublish": "pnpm regen && pnpm build"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "typescript": "next"
+  }
+}
