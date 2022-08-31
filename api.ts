@@ -195,6 +195,53 @@ export const ArticleApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @param {string} articleId 
+         * @param {any} file 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiArticlesArticleSetPicturePost: async (articleId: string, file: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'articleId' is not null or undefined
+            assertParamExists('apiArticlesArticleSetPicturePost', 'articleId', articleId)
+            // verify required parameter 'file' is not null or undefined
+            assertParamExists('apiArticlesArticleSetPicturePost', 'file', file)
+            const localVarPath = `/api/Articles/Article/SetPicture`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
+
+
+            if (articleId !== undefined) { 
+                localVarFormParams.append('ArticleId', articleId as any);
+            }
+    
+            if (file !== undefined) { 
+                localVarFormParams.append('File', file as any);
+            }
+    
+    
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -245,6 +292,17 @@ export const ArticleApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiArticlesArticleRemoveEditorDelete(vloMainAreasArticleUserArticleInput, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         * 
+         * @param {string} articleId 
+         * @param {any} file 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiArticlesArticleSetPicturePost(articleId: string, file: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiArticlesArticleSetPicturePost(articleId, file, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -290,6 +348,16 @@ export const ArticleApiFactory = function (configuration?: Configuration, basePa
          */
         apiArticlesArticleRemoveEditorDelete(vloMainAreasArticleUserArticleInput?: VloMainAreasArticleUserArticleInput, options?: any): AxiosPromise<void> {
             return localVarFp.apiArticlesArticleRemoveEditorDelete(vloMainAreasArticleUserArticleInput, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} articleId 
+         * @param {any} file 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiArticlesArticleSetPicturePost(articleId: string, file: any, options?: any): AxiosPromise<void> {
+            return localVarFp.apiArticlesArticleSetPicturePost(articleId, file, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -343,6 +411,18 @@ export class ArticleApi extends BaseAPI {
      */
     public apiArticlesArticleRemoveEditorDelete(vloMainAreasArticleUserArticleInput?: VloMainAreasArticleUserArticleInput, options?: AxiosRequestConfig) {
         return ArticleApiFp(this.configuration).apiArticlesArticleRemoveEditorDelete(vloMainAreasArticleUserArticleInput, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} articleId 
+     * @param {any} file 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ArticleApi
+     */
+    public apiArticlesArticleSetPicturePost(articleId: string, file: any, options?: AxiosRequestConfig) {
+        return ArticleApiFp(this.configuration).apiArticlesArticleSetPicturePost(articleId, file, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
