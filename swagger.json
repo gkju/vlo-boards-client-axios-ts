@@ -51,6 +51,37 @@
         }
       }
     },
+    "/api/Articles/Article/SetTitle": {
+      "put": {
+        "tags": [
+          "Article"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/vlo_main.Areas.Article.ArticleController_ArticleTitleInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/vlo_main.Areas.Article.ArticleController_ArticleTitleInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/vlo_main.Areas.Article.ArticleController_ArticleTitleInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Articles/Article/AddEditor": {
       "put": {
         "tags": [
@@ -154,10 +185,70 @@
           }
         }
       }
+    },
+    "/api/Articles/Article/GetPicture": {
+      "get": {
+        "tags": [
+          "Article"
+        ],
+        "parameters": [
+          {
+            "name": "ArticleId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Articles/Article/GetContent": {
+      "get": {
+        "tags": [
+          "Article"
+        ],
+        "parameters": [
+          {
+            "name": "ArticleId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "vlo_main.Areas.Article.ArticleController_ArticleTitleInput": {
+        "required": [
+          "articleId",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "articleId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
       "vlo_main.Areas.Article.ArticleUpdateInput": {
         "required": [
           "articleId",
