@@ -124,6 +124,40 @@ export const ArticleApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        apiArticlesArticleGetArticleGet: async (articleId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Articles/Article/GetArticle`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (articleId !== undefined) {
+                localVarQueryParameter['ArticleId'] = articleId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} [articleId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         apiArticlesArticleGetContentGet: async (articleId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/Articles/Article/GetContent`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -388,6 +422,16 @@ export const ArticleApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        async apiArticlesArticleGetArticleGet(articleId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiArticlesArticleGetArticleGet(articleId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} [articleId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         async apiArticlesArticleGetContentGet(articleId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiArticlesArticleGetContentGet(articleId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
@@ -478,6 +522,15 @@ export const ArticleApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        apiArticlesArticleGetArticleGet(articleId?: string, options?: any): AxiosPromise<void> {
+            return localVarFp.apiArticlesArticleGetArticleGet(articleId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} [articleId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         apiArticlesArticleGetContentGet(articleId?: string, options?: any): AxiosPromise<void> {
             return localVarFp.apiArticlesArticleGetContentGet(articleId, options).then((request) => request(axios, basePath));
         },
@@ -555,6 +608,17 @@ export class ArticleApi extends BaseAPI {
      */
     public apiArticlesArticleAddEditorPut(vloMainAreasArticleUserArticleInput?: VloMainAreasArticleUserArticleInput, options?: AxiosRequestConfig) {
         return ArticleApiFp(this.configuration).apiArticlesArticleAddEditorPut(vloMainAreasArticleUserArticleInput, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} [articleId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ArticleApi
+     */
+    public apiArticlesArticleGetArticleGet(articleId?: string, options?: AxiosRequestConfig) {
+        return ArticleApiFp(this.configuration).apiArticlesArticleGetArticleGet(articleId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
