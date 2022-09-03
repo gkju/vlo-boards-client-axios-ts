@@ -244,7 +244,24 @@
         ],
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountsData.Models.DataModels.Article"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountsData.Models.DataModels.Article"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountsData.Models.DataModels.Article"
+                }
+              }
+            }
           }
         }
       }
@@ -252,6 +269,276 @@
   },
   "components": {
     "schemas": {
+      "AccountsData.Models.DataModels.ApplicationUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "normalizedUserName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "normalizedEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "emailConfirmed": {
+            "type": "boolean"
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumberConfirmed": {
+            "type": "boolean"
+          },
+          "twoFactorEnabled": {
+            "type": "boolean"
+          },
+          "lockoutEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lockoutEnabled": {
+            "type": "boolean"
+          },
+          "accessFailedCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "profilePicture": {
+            "$ref": "#/components/schemas/AccountsData.Models.DataModels.ProfilePicture"
+          },
+          "socialCredit": {
+            "type": "number",
+            "format": "double"
+          },
+          "articles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountsData.Models.DataModels.Article"
+            },
+            "nullable": true
+          },
+          "usedBytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "maxBytes": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountsData.Models.DataModels.Article": {
+        "type": "object",
+        "properties": {
+          "articleId": {
+            "type": "string",
+            "nullable": true
+          },
+          "author": {
+            "$ref": "#/components/schemas/AccountsData.Models.DataModels.ApplicationUser"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountsData.Models.DataModels.Tag"
+            },
+            "nullable": true
+          },
+          "modifiedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "public": {
+            "type": "boolean"
+          },
+          "editors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountsData.Models.DataModels.ApplicationUser"
+            },
+            "nullable": true
+          },
+          "reviewers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountsData.Models.DataModels.ApplicationUser"
+            },
+            "nullable": true
+          },
+          "contentJson": {
+            "type": "string",
+            "nullable": true
+          },
+          "revisions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Revision"
+            },
+            "nullable": true
+          },
+          "autoPublish": {
+            "type": "boolean"
+          },
+          "autoPublishOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "picture": {
+            "$ref": "#/components/schemas/AccountsData.Models.DataModels.File"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountsData.Models.DataModels.File": {
+        "type": "object",
+        "properties": {
+          "objectId": {
+            "type": "string",
+            "nullable": true
+          },
+          "bucket": {
+            "type": "string",
+            "nullable": true
+          },
+          "backedInMinio": {
+            "type": "boolean"
+          },
+          "userManageable": {
+            "type": "boolean"
+          },
+          "public": {
+            "type": "boolean"
+          },
+          "fileName": {
+            "type": "string",
+            "nullable": true
+          },
+          "contentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "ownerId": {
+            "type": "string",
+            "nullable": true
+          },
+          "owner": {
+            "$ref": "#/components/schemas/AccountsData.Models.DataModels.ApplicationUser"
+          },
+          "byteSize": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "parentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "parent": {
+            "$ref": "#/components/schemas/AccountsData.Models.DataModels.Folder"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountsData.Models.DataModels.Folder": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "ownerId": {
+            "type": "string",
+            "nullable": true
+          },
+          "owner": {
+            "$ref": "#/components/schemas/AccountsData.Models.DataModels.ApplicationUser"
+          },
+          "masterFolderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "masterFolder": {
+            "$ref": "#/components/schemas/AccountsData.Models.DataModels.Folder"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountsData.Models.DataModels.ProfilePicture": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "picture": {
+            "$ref": "#/components/schemas/AccountsData.Models.DataModels.File"
+          },
+          "ownerId": {
+            "type": "string",
+            "nullable": true
+          },
+          "owner": {
+            "$ref": "#/components/schemas/AccountsData.Models.DataModels.ApplicationUser"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountsData.Models.DataModels.Tag": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "author": {
+            "$ref": "#/components/schemas/AccountsData.Models.DataModels.ApplicationUser"
+          },
+          "content": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Revision": {
+        "type": "object",
+        "properties": {
+          "revisionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "author": {
+            "$ref": "#/components/schemas/AccountsData.Models.DataModels.ApplicationUser"
+          },
+          "contentJson": {
+            "type": "string",
+            "nullable": true
+          },
+          "modifiedOn": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
       "vlo_main.Areas.Article.ArticleController_ArticleTitleInput": {
         "required": [
           "articleId",

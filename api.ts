@@ -24,6 +24,403 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 /**
  * 
  * @export
+ * @interface AccountsDataModelsDataModelsApplicationUser
+ */
+export interface AccountsDataModelsDataModelsApplicationUser {
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsApplicationUser
+     */
+    'id'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsApplicationUser
+     */
+    'userName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsApplicationUser
+     */
+    'normalizedUserName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsApplicationUser
+     */
+    'email'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsApplicationUser
+     */
+    'normalizedEmail'?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AccountsDataModelsDataModelsApplicationUser
+     */
+    'emailConfirmed'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsApplicationUser
+     */
+    'phoneNumber'?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AccountsDataModelsDataModelsApplicationUser
+     */
+    'phoneNumberConfirmed'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AccountsDataModelsDataModelsApplicationUser
+     */
+    'twoFactorEnabled'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsApplicationUser
+     */
+    'lockoutEnd'?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AccountsDataModelsDataModelsApplicationUser
+     */
+    'lockoutEnabled'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountsDataModelsDataModelsApplicationUser
+     */
+    'accessFailedCount'?: number;
+    /**
+     * 
+     * @type {AccountsDataModelsDataModelsProfilePicture}
+     * @memberof AccountsDataModelsDataModelsApplicationUser
+     */
+    'profilePicture'?: AccountsDataModelsDataModelsProfilePicture;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountsDataModelsDataModelsApplicationUser
+     */
+    'socialCredit'?: number;
+    /**
+     * 
+     * @type {Array<AccountsDataModelsDataModelsArticle>}
+     * @memberof AccountsDataModelsDataModelsApplicationUser
+     */
+    'articles'?: Array<AccountsDataModelsDataModelsArticle> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountsDataModelsDataModelsApplicationUser
+     */
+    'usedBytes'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountsDataModelsDataModelsApplicationUser
+     */
+    'maxBytes'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface AccountsDataModelsDataModelsArticle
+ */
+export interface AccountsDataModelsDataModelsArticle {
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsArticle
+     */
+    'articleId'?: string | null;
+    /**
+     * 
+     * @type {AccountsDataModelsDataModelsApplicationUser}
+     * @memberof AccountsDataModelsDataModelsArticle
+     */
+    'author'?: AccountsDataModelsDataModelsApplicationUser;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsArticle
+     */
+    'title'?: string | null;
+    /**
+     * 
+     * @type {Array<AccountsDataModelsDataModelsTag>}
+     * @memberof AccountsDataModelsDataModelsArticle
+     */
+    'tags'?: Array<AccountsDataModelsDataModelsTag> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsArticle
+     */
+    'modifiedOn'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AccountsDataModelsDataModelsArticle
+     */
+    'public'?: boolean;
+    /**
+     * 
+     * @type {Array<AccountsDataModelsDataModelsApplicationUser>}
+     * @memberof AccountsDataModelsDataModelsArticle
+     */
+    'editors'?: Array<AccountsDataModelsDataModelsApplicationUser> | null;
+    /**
+     * 
+     * @type {Array<AccountsDataModelsDataModelsApplicationUser>}
+     * @memberof AccountsDataModelsDataModelsArticle
+     */
+    'reviewers'?: Array<AccountsDataModelsDataModelsApplicationUser> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsArticle
+     */
+    'contentJson'?: string | null;
+    /**
+     * 
+     * @type {Array<Revision>}
+     * @memberof AccountsDataModelsDataModelsArticle
+     */
+    'revisions'?: Array<Revision> | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AccountsDataModelsDataModelsArticle
+     */
+    'autoPublish'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsArticle
+     */
+    'autoPublishOn'?: string;
+    /**
+     * 
+     * @type {AccountsDataModelsDataModelsFile}
+     * @memberof AccountsDataModelsDataModelsArticle
+     */
+    'picture'?: AccountsDataModelsDataModelsFile;
+}
+/**
+ * 
+ * @export
+ * @interface AccountsDataModelsDataModelsFile
+ */
+export interface AccountsDataModelsDataModelsFile {
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsFile
+     */
+    'objectId'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsFile
+     */
+    'bucket'?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AccountsDataModelsDataModelsFile
+     */
+    'backedInMinio'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AccountsDataModelsDataModelsFile
+     */
+    'userManageable'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AccountsDataModelsDataModelsFile
+     */
+    'public'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsFile
+     */
+    'fileName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsFile
+     */
+    'contentType'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsFile
+     */
+    'ownerId'?: string | null;
+    /**
+     * 
+     * @type {AccountsDataModelsDataModelsApplicationUser}
+     * @memberof AccountsDataModelsDataModelsFile
+     */
+    'owner'?: AccountsDataModelsDataModelsApplicationUser;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountsDataModelsDataModelsFile
+     */
+    'byteSize'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsFile
+     */
+    'parentId'?: string | null;
+    /**
+     * 
+     * @type {AccountsDataModelsDataModelsFolder}
+     * @memberof AccountsDataModelsDataModelsFile
+     */
+    'parent'?: AccountsDataModelsDataModelsFolder;
+}
+/**
+ * 
+ * @export
+ * @interface AccountsDataModelsDataModelsFolder
+ */
+export interface AccountsDataModelsDataModelsFolder {
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsFolder
+     */
+    'id'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsFolder
+     */
+    'ownerId'?: string | null;
+    /**
+     * 
+     * @type {AccountsDataModelsDataModelsApplicationUser}
+     * @memberof AccountsDataModelsDataModelsFolder
+     */
+    'owner'?: AccountsDataModelsDataModelsApplicationUser;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsFolder
+     */
+    'masterFolderId'?: string | null;
+    /**
+     * 
+     * @type {AccountsDataModelsDataModelsFolder}
+     * @memberof AccountsDataModelsDataModelsFolder
+     */
+    'masterFolder'?: AccountsDataModelsDataModelsFolder;
+}
+/**
+ * 
+ * @export
+ * @interface AccountsDataModelsDataModelsProfilePicture
+ */
+export interface AccountsDataModelsDataModelsProfilePicture {
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsProfilePicture
+     */
+    'id'?: string | null;
+    /**
+     * 
+     * @type {AccountsDataModelsDataModelsFile}
+     * @memberof AccountsDataModelsDataModelsProfilePicture
+     */
+    'picture'?: AccountsDataModelsDataModelsFile;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsProfilePicture
+     */
+    'ownerId'?: string | null;
+    /**
+     * 
+     * @type {AccountsDataModelsDataModelsApplicationUser}
+     * @memberof AccountsDataModelsDataModelsProfilePicture
+     */
+    'owner'?: AccountsDataModelsDataModelsApplicationUser;
+}
+/**
+ * 
+ * @export
+ * @interface AccountsDataModelsDataModelsTag
+ */
+export interface AccountsDataModelsDataModelsTag {
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsTag
+     */
+    'id'?: string | null;
+    /**
+     * 
+     * @type {AccountsDataModelsDataModelsApplicationUser}
+     * @memberof AccountsDataModelsDataModelsTag
+     */
+    'author'?: AccountsDataModelsDataModelsApplicationUser;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsTag
+     */
+    'content'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface Revision
+ */
+export interface Revision {
+    /**
+     * 
+     * @type {string}
+     * @memberof Revision
+     */
+    'revisionId'?: string | null;
+    /**
+     * 
+     * @type {AccountsDataModelsDataModelsApplicationUser}
+     * @memberof Revision
+     */
+    'author'?: AccountsDataModelsDataModelsApplicationUser;
+    /**
+     * 
+     * @type {string}
+     * @memberof Revision
+     */
+    'contentJson'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Revision
+     */
+    'modifiedOn'?: string;
+}
+/**
+ * 
+ * @export
  * @interface VloMainAreasArticleArticleControllerArticleTitleInput
  */
 export interface VloMainAreasArticleArticleControllerArticleTitleInput {
@@ -422,7 +819,7 @@ export const ArticleApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiArticlesArticleGetArticleGet(articleId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async apiArticlesArticleGetArticleGet(articleId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AccountsDataModelsDataModelsArticle>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiArticlesArticleGetArticleGet(articleId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -522,7 +919,7 @@ export const ArticleApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiArticlesArticleGetArticleGet(articleId?: string, options?: any): AxiosPromise<void> {
+        apiArticlesArticleGetArticleGet(articleId?: string, options?: any): AxiosPromise<AccountsDataModelsDataModelsArticle> {
             return localVarFp.apiArticlesArticleGetArticleGet(articleId, options).then((request) => request(axios, basePath));
         },
         /**
