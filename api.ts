@@ -192,6 +192,12 @@ export interface AccountsDataModelsDataModelsArticle {
     'contentJson'?: string | null;
     /**
      * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsArticle
+     */
+    'contentText'?: string | null;
+    /**
+     * 
      * @type {Array<Revision>}
      * @memberof AccountsDataModelsDataModelsArticle
      */
@@ -417,6 +423,44 @@ export interface Revision {
      * @memberof Revision
      */
     'modifiedOn'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface VloMainAreasArticleArticleControllerArticleBoolInput
+ */
+export interface VloMainAreasArticleArticleControllerArticleBoolInput {
+    /**
+     * 
+     * @type {string}
+     * @memberof VloMainAreasArticleArticleControllerArticleBoolInput
+     */
+    'articleId'?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof VloMainAreasArticleArticleControllerArticleBoolInput
+     */
+    'public'?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface VloMainAreasArticleArticleControllerArticleDateInput
+ */
+export interface VloMainAreasArticleArticleControllerArticleDateInput {
+    /**
+     * 
+     * @type {string}
+     * @memberof VloMainAreasArticleArticleControllerArticleDateInput
+     */
+    'publishOn'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof VloMainAreasArticleArticleControllerArticleDateInput
+     */
+    'articleId'?: string | null;
 }
 /**
  * 
@@ -715,6 +759,42 @@ export const ArticleApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @param {string} query 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiArticlesArticleSearchArticlesGet: async (query: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'query' is not null or undefined
+            assertParamExists('apiArticlesArticleSearchArticlesGet', 'query', query)
+            const localVarPath = `/api/Articles/Article/SearchArticles`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (query !== undefined) {
+                localVarQueryParameter['query'] = query;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {string} articleId 
          * @param {any} file 
          * @param {*} [options] Override http request option.
@@ -754,6 +834,72 @@ export const ArticleApiAxiosParamCreator = function (configuration?: Configurati
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {VloMainAreasArticleArticleControllerArticleBoolInput} [vloMainAreasArticleArticleControllerArticleBoolInput] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiArticlesArticleSetPublicPut: async (vloMainAreasArticleArticleControllerArticleBoolInput?: VloMainAreasArticleArticleControllerArticleBoolInput, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Articles/Article/SetPublic`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(vloMainAreasArticleArticleControllerArticleBoolInput, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {VloMainAreasArticleArticleControllerArticleDateInput} [vloMainAreasArticleArticleControllerArticleDateInput] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiArticlesArticleSetPublishDatePut: async (vloMainAreasArticleArticleControllerArticleDateInput?: VloMainAreasArticleArticleControllerArticleDateInput, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Articles/Article/SetPublishDate`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(vloMainAreasArticleArticleControllerArticleDateInput, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -875,6 +1021,16 @@ export const ArticleApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} query 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiArticlesArticleSearchArticlesGet(query: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiArticlesArticleSearchArticlesGet(query, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {string} articleId 
          * @param {any} file 
          * @param {*} [options] Override http request option.
@@ -882,6 +1038,26 @@ export const ArticleApiFp = function(configuration?: Configuration) {
          */
         async apiArticlesArticleSetPicturePost(articleId: string, file: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiArticlesArticleSetPicturePost(articleId, file, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {VloMainAreasArticleArticleControllerArticleBoolInput} [vloMainAreasArticleArticleControllerArticleBoolInput] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiArticlesArticleSetPublicPut(vloMainAreasArticleArticleControllerArticleBoolInput?: VloMainAreasArticleArticleControllerArticleBoolInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiArticlesArticleSetPublicPut(vloMainAreasArticleArticleControllerArticleBoolInput, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {VloMainAreasArticleArticleControllerArticleDateInput} [vloMainAreasArticleArticleControllerArticleDateInput] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiArticlesArticleSetPublishDatePut(vloMainAreasArticleArticleControllerArticleDateInput?: VloMainAreasArticleArticleControllerArticleDateInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiArticlesArticleSetPublishDatePut(vloMainAreasArticleArticleControllerArticleDateInput, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -969,6 +1145,15 @@ export const ArticleApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @param {string} query 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiArticlesArticleSearchArticlesGet(query: string, options?: any): AxiosPromise<void> {
+            return localVarFp.apiArticlesArticleSearchArticlesGet(query, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {string} articleId 
          * @param {any} file 
          * @param {*} [options] Override http request option.
@@ -976,6 +1161,24 @@ export const ArticleApiFactory = function (configuration?: Configuration, basePa
          */
         apiArticlesArticleSetPicturePost(articleId: string, file: any, options?: any): AxiosPromise<void> {
             return localVarFp.apiArticlesArticleSetPicturePost(articleId, file, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {VloMainAreasArticleArticleControllerArticleBoolInput} [vloMainAreasArticleArticleControllerArticleBoolInput] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiArticlesArticleSetPublicPut(vloMainAreasArticleArticleControllerArticleBoolInput?: VloMainAreasArticleArticleControllerArticleBoolInput, options?: any): AxiosPromise<void> {
+            return localVarFp.apiArticlesArticleSetPublicPut(vloMainAreasArticleArticleControllerArticleBoolInput, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {VloMainAreasArticleArticleControllerArticleDateInput} [vloMainAreasArticleArticleControllerArticleDateInput] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiArticlesArticleSetPublishDatePut(vloMainAreasArticleArticleControllerArticleDateInput?: VloMainAreasArticleArticleControllerArticleDateInput, options?: any): AxiosPromise<void> {
+            return localVarFp.apiArticlesArticleSetPublishDatePut(vloMainAreasArticleArticleControllerArticleDateInput, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1075,6 +1278,17 @@ export class ArticleApi extends BaseAPI {
 
     /**
      * 
+     * @param {string} query 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ArticleApi
+     */
+    public apiArticlesArticleSearchArticlesGet(query: string, options?: AxiosRequestConfig) {
+        return ArticleApiFp(this.configuration).apiArticlesArticleSearchArticlesGet(query, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @param {string} articleId 
      * @param {any} file 
      * @param {*} [options] Override http request option.
@@ -1083,6 +1297,28 @@ export class ArticleApi extends BaseAPI {
      */
     public apiArticlesArticleSetPicturePost(articleId: string, file: any, options?: AxiosRequestConfig) {
         return ArticleApiFp(this.configuration).apiArticlesArticleSetPicturePost(articleId, file, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {VloMainAreasArticleArticleControllerArticleBoolInput} [vloMainAreasArticleArticleControllerArticleBoolInput] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ArticleApi
+     */
+    public apiArticlesArticleSetPublicPut(vloMainAreasArticleArticleControllerArticleBoolInput?: VloMainAreasArticleArticleControllerArticleBoolInput, options?: AxiosRequestConfig) {
+        return ArticleApiFp(this.configuration).apiArticlesArticleSetPublicPut(vloMainAreasArticleArticleControllerArticleBoolInput, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {VloMainAreasArticleArticleControllerArticleDateInput} [vloMainAreasArticleArticleControllerArticleDateInput] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ArticleApi
+     */
+    public apiArticlesArticleSetPublishDatePut(vloMainAreasArticleArticleControllerArticleDateInput?: VloMainAreasArticleArticleControllerArticleDateInput, options?: AxiosRequestConfig) {
+        return ArticleApiFp(this.configuration).apiArticlesArticleSetPublishDatePut(vloMainAreasArticleArticleControllerArticleDateInput, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

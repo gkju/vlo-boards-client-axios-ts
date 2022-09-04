@@ -186,6 +186,68 @@
         }
       }
     },
+    "/api/Articles/Article/SetPublishDate": {
+      "put": {
+        "tags": [
+          "Article"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/vlo_main.Areas.Article.ArticleController_ArticleDateInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/vlo_main.Areas.Article.ArticleController_ArticleDateInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/vlo_main.Areas.Article.ArticleController_ArticleDateInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Articles/Article/SetPublic": {
+      "put": {
+        "tags": [
+          "Article"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/vlo_main.Areas.Article.ArticleController_ArticleBoolInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/vlo_main.Areas.Article.ArticleController_ArticleBoolInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/vlo_main.Areas.Article.ArticleController_ArticleBoolInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Articles/Article/GetPicture": {
       "get": {
         "tags": [
@@ -262,6 +324,28 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/Articles/Article/SearchArticles": {
+      "get": {
+        "tags": [
+          "Article"
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
           }
         }
       }
@@ -385,6 +469,10 @@
             "nullable": true
           },
           "contentJson": {
+            "type": "string",
+            "nullable": true
+          },
+          "contentText": {
             "type": "string",
             "nullable": true
           },
@@ -535,6 +623,33 @@
           "modifiedOn": {
             "type": "string",
             "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "vlo_main.Areas.Article.ArticleController_ArticleBoolInput": {
+        "type": "object",
+        "properties": {
+          "articleId": {
+            "type": "string",
+            "nullable": true
+          },
+          "public": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "vlo_main.Areas.Article.ArticleController_ArticleDateInput": {
+        "type": "object",
+        "properties": {
+          "publishOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "articleId": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
