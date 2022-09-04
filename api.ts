@@ -675,6 +675,40 @@ export const ArticleApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @param {string} [articleId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiArticlesArticleGetTagsGet: async (articleId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Articles/Article/GetTags`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (articleId !== undefined) {
+                localVarQueryParameter['ArticleId'] = articleId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Creates a blank article and returns its ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1003,6 +1037,16 @@ export const ArticleApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} [articleId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiArticlesArticleGetTagsGet(articleId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<AccountsDataModelsDataModelsTag>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiArticlesArticleGetTagsGet(articleId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @summary Creates a blank article and returns its ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1130,6 +1174,15 @@ export const ArticleApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @param {string} [articleId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiArticlesArticleGetTagsGet(articleId?: string, options?: any): AxiosPromise<Array<AccountsDataModelsDataModelsTag>> {
+            return localVarFp.apiArticlesArticleGetTagsGet(articleId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Creates a blank article and returns its ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1253,6 +1306,17 @@ export class ArticleApi extends BaseAPI {
      */
     public apiArticlesArticleGetPictureGet(articleId?: string, options?: AxiosRequestConfig) {
         return ArticleApiFp(this.configuration).apiArticlesArticleGetPictureGet(articleId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} [articleId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ArticleApi
+     */
+    public apiArticlesArticleGetTagsGet(articleId?: string, options?: AxiosRequestConfig) {
+        return ArticleApiFp(this.configuration).apiArticlesArticleGetTagsGet(articleId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
