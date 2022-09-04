@@ -423,6 +423,18 @@ export interface Revision {
      * @memberof Revision
      */
     'modifiedOn'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Revision
+     */
+    'articleId'?: string | null;
+    /**
+     * 
+     * @type {AccountsDataModelsDataModelsArticle}
+     * @memberof Revision
+     */
+    'article'?: AccountsDataModelsDataModelsArticle;
 }
 /**
  * 
@@ -1330,6 +1342,244 @@ export class ArticleApi extends BaseAPI {
      */
     public apiArticlesArticleSetTitlePut(vloMainAreasArticleArticleControllerArticleTitleInput?: VloMainAreasArticleArticleControllerArticleTitleInput, options?: AxiosRequestConfig) {
         return ArticleApiFp(this.configuration).apiArticlesArticleSetTitlePut(vloMainAreasArticleArticleControllerArticleTitleInput, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * TagApi - axios parameter creator
+ * @export
+ */
+export const TagApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {string} [articleId] 
+         * @param {string} [tagContent] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTagsTagAddToArticlePost: async (articleId?: string, tagContent?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Tags/Tag/AddToArticle`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (articleId !== undefined) {
+                localVarQueryParameter['articleId'] = articleId;
+            }
+
+            if (tagContent !== undefined) {
+                localVarQueryParameter['tagContent'] = tagContent;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} [tagContent] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTagsTagPost: async (tagContent?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Tags/Tag`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (tagContent !== undefined) {
+                localVarQueryParameter['tagContent'] = tagContent;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} [query] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTagsTagSearchGet: async (query?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Tags/Tag/Search`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (query !== undefined) {
+                localVarQueryParameter['query'] = query;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * TagApi - functional programming interface
+ * @export
+ */
+export const TagApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = TagApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {string} [articleId] 
+         * @param {string} [tagContent] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiTagsTagAddToArticlePost(articleId?: string, tagContent?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiTagsTagAddToArticlePost(articleId, tagContent, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} [tagContent] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiTagsTagPost(tagContent?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiTagsTagPost(tagContent, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} [query] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiTagsTagSearchGet(query?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiTagsTagSearchGet(query, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * TagApi - factory interface
+ * @export
+ */
+export const TagApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = TagApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {string} [articleId] 
+         * @param {string} [tagContent] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTagsTagAddToArticlePost(articleId?: string, tagContent?: string, options?: any): AxiosPromise<void> {
+            return localVarFp.apiTagsTagAddToArticlePost(articleId, tagContent, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} [tagContent] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTagsTagPost(tagContent?: string, options?: any): AxiosPromise<void> {
+            return localVarFp.apiTagsTagPost(tagContent, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} [query] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTagsTagSearchGet(query?: string, options?: any): AxiosPromise<void> {
+            return localVarFp.apiTagsTagSearchGet(query, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * TagApi - object-oriented interface
+ * @export
+ * @class TagApi
+ * @extends {BaseAPI}
+ */
+export class TagApi extends BaseAPI {
+    /**
+     * 
+     * @param {string} [articleId] 
+     * @param {string} [tagContent] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TagApi
+     */
+    public apiTagsTagAddToArticlePost(articleId?: string, tagContent?: string, options?: AxiosRequestConfig) {
+        return TagApiFp(this.configuration).apiTagsTagAddToArticlePost(articleId, tagContent, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} [tagContent] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TagApi
+     */
+    public apiTagsTagPost(tagContent?: string, options?: AxiosRequestConfig) {
+        return TagApiFp(this.configuration).apiTagsTagPost(tagContent, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} [query] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TagApi
+     */
+    public apiTagsTagSearchGet(query?: string, options?: AxiosRequestConfig) {
+        return TagApiFp(this.configuration).apiTagsTagSearchGet(query, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

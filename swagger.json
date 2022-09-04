@@ -349,6 +349,77 @@
           }
         }
       }
+    },
+    "/api/Tags/Tag": {
+      "post": {
+        "tags": [
+          "Tag"
+        ],
+        "parameters": [
+          {
+            "name": "tagContent",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Tags/Tag/AddToArticle": {
+      "post": {
+        "tags": [
+          "Tag"
+        ],
+        "parameters": [
+          {
+            "name": "articleId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagContent",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Tags/Tag/Search": {
+      "get": {
+        "tags": [
+          "Tag"
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -623,6 +694,13 @@
           "modifiedOn": {
             "type": "string",
             "format": "date-time"
+          },
+          "articleId": {
+            "type": "string",
+            "nullable": true
+          },
+          "article": {
+            "$ref": "#/components/schemas/AccountsData.Models.DataModels.Article"
           }
         },
         "additionalProperties": false
