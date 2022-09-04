@@ -1491,6 +1491,45 @@ export const TagApiAxiosParamCreator = function (configuration?: Configuration) 
         },
         /**
          * 
+         * @param {string} [articleId] 
+         * @param {string} [tagContent] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTagsTagRemoveFromArticleDelete: async (articleId?: string, tagContent?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Tags/Tag/RemoveFromArticle`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (articleId !== undefined) {
+                localVarQueryParameter['articleId'] = articleId;
+            }
+
+            if (tagContent !== undefined) {
+                localVarQueryParameter['tagContent'] = tagContent;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {string} [query] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1556,6 +1595,17 @@ export const TagApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} [articleId] 
+         * @param {string} [tagContent] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiTagsTagRemoveFromArticleDelete(articleId?: string, tagContent?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiTagsTagRemoveFromArticleDelete(articleId, tagContent, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {string} [query] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1592,6 +1642,16 @@ export const TagApiFactory = function (configuration?: Configuration, basePath?:
          */
         apiTagsTagPost(tagContent?: string, options?: any): AxiosPromise<void> {
             return localVarFp.apiTagsTagPost(tagContent, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} [articleId] 
+         * @param {string} [tagContent] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTagsTagRemoveFromArticleDelete(articleId?: string, tagContent?: string, options?: any): AxiosPromise<void> {
+            return localVarFp.apiTagsTagRemoveFromArticleDelete(articleId, tagContent, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1633,6 +1693,18 @@ export class TagApi extends BaseAPI {
      */
     public apiTagsTagPost(tagContent?: string, options?: AxiosRequestConfig) {
         return TagApiFp(this.configuration).apiTagsTagPost(tagContent, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} [articleId] 
+     * @param {string} [tagContent] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TagApi
+     */
+    public apiTagsTagRemoveFromArticleDelete(articleId?: string, tagContent?: string, options?: AxiosRequestConfig) {
+        return TagApiFp(this.configuration).apiTagsTagRemoveFromArticleDelete(articleId, tagContent, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
