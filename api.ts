@@ -277,12 +277,6 @@ export interface AccountsDataModelsDataModelsFile {
     'ownerId'?: string | null;
     /**
      * 
-     * @type {AccountsDataModelsDataModelsApplicationUser}
-     * @memberof AccountsDataModelsDataModelsFile
-     */
-    'owner'?: AccountsDataModelsDataModelsApplicationUser;
-    /**
-     * 
      * @type {number}
      * @memberof AccountsDataModelsDataModelsFile
      */
@@ -317,25 +311,19 @@ export interface AccountsDataModelsDataModelsFolder {
      * @type {string}
      * @memberof AccountsDataModelsDataModelsFolder
      */
-    'ownerId'?: string | null;
+    'name'?: string | null;
     /**
      * 
-     * @type {AccountsDataModelsDataModelsApplicationUser}
+     * @type {string}
      * @memberof AccountsDataModelsDataModelsFolder
      */
-    'owner'?: AccountsDataModelsDataModelsApplicationUser;
+    'ownerId'?: string | null;
     /**
      * 
      * @type {string}
      * @memberof AccountsDataModelsDataModelsFolder
      */
     'masterFolderId'?: string | null;
-    /**
-     * 
-     * @type {AccountsDataModelsDataModelsFolder}
-     * @memberof AccountsDataModelsDataModelsFolder
-     */
-    'masterFolder'?: AccountsDataModelsDataModelsFolder;
 }
 /**
  * 
@@ -361,12 +349,6 @@ export interface AccountsDataModelsDataModelsProfilePicture {
      * @memberof AccountsDataModelsDataModelsProfilePicture
      */
     'ownerId'?: string | null;
-    /**
-     * 
-     * @type {AccountsDataModelsDataModelsApplicationUser}
-     * @memberof AccountsDataModelsDataModelsProfilePicture
-     */
-    'owner'?: AccountsDataModelsDataModelsApplicationUser;
 }
 /**
  * 
@@ -382,16 +364,55 @@ export interface AccountsDataModelsDataModelsTag {
     'id'?: string | null;
     /**
      * 
-     * @type {AccountsDataModelsDataModelsApplicationUser}
+     * @type {string}
      * @memberof AccountsDataModelsDataModelsTag
      */
-    'author'?: AccountsDataModelsDataModelsApplicationUser;
+    'authorId'?: string | null;
     /**
      * 
      * @type {string}
      * @memberof AccountsDataModelsDataModelsTag
      */
     'content'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface MicrosoftAspNetCoreMvcProblemDetails
+ */
+export interface MicrosoftAspNetCoreMvcProblemDetails {
+    [key: string]: any;
+
+    /**
+     * 
+     * @type {string}
+     * @memberof MicrosoftAspNetCoreMvcProblemDetails
+     */
+    'type'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof MicrosoftAspNetCoreMvcProblemDetails
+     */
+    'title'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof MicrosoftAspNetCoreMvcProblemDetails
+     */
+    'status'?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof MicrosoftAspNetCoreMvcProblemDetails
+     */
+    'detail'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof MicrosoftAspNetCoreMvcProblemDetails
+     */
+    'instance'?: string | null;
 }
 /**
  * 
@@ -805,13 +826,11 @@ export const ArticleApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {string} query 
+         * @param {string} [query] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiArticlesArticleSearchArticlesGet: async (query: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'query' is not null or undefined
-            assertParamExists('apiArticlesArticleSearchArticlesGet', 'query', query)
+        apiArticlesArticleSearchArticlesGet: async (query?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/Articles/Article/SearchArticles`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1077,11 +1096,11 @@ export const ArticleApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {string} query 
+         * @param {string} [query] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiArticlesArticleSearchArticlesGet(query: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async apiArticlesArticleSearchArticlesGet(query?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiArticlesArticleSearchArticlesGet(query, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1210,11 +1229,11 @@ export const ArticleApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @param {string} query 
+         * @param {string} [query] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiArticlesArticleSearchArticlesGet(query: string, options?: any): AxiosPromise<void> {
+        apiArticlesArticleSearchArticlesGet(query?: string, options?: any): AxiosPromise<void> {
             return localVarFp.apiArticlesArticleSearchArticlesGet(query, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1354,12 +1373,12 @@ export class ArticleApi extends BaseAPI {
 
     /**
      * 
-     * @param {string} query 
+     * @param {string} [query] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ArticleApi
      */
-    public apiArticlesArticleSearchArticlesGet(query: string, options?: AxiosRequestConfig) {
+    public apiArticlesArticleSearchArticlesGet(query?: string, options?: AxiosRequestConfig) {
         return ArticleApiFp(this.configuration).apiArticlesArticleSearchArticlesGet(query, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1406,6 +1425,720 @@ export class ArticleApi extends BaseAPI {
      */
     public apiArticlesArticleSetTitlePut(vloMainAreasArticleArticleControllerArticleTitleInput?: VloMainAreasArticleArticleControllerArticleTitleInput, options?: AxiosRequestConfig) {
         return ArticleApiFp(this.configuration).apiArticlesArticleSetTitlePut(vloMainAreasArticleArticleControllerArticleTitleInput, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * FileApi - axios parameter creator
+ * @export
+ */
+export const FileApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {string} [folderId] 
+         * @param {string} [fileId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFileManagementFileAddSubFilePost: async (folderId?: string, fileId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/FileManagement/File/AddSubFile`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (folderId !== undefined) {
+                localVarQueryParameter['FolderId'] = folderId;
+            }
+
+            if (fileId !== undefined) {
+                localVarQueryParameter['FileId'] = fileId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} [parentId] 
+         * @param {string} [childId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFileManagementFileAddSubFolderPost: async (parentId?: string, childId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/FileManagement/File/AddSubFolder`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (parentId !== undefined) {
+                localVarQueryParameter['ParentId'] = parentId;
+            }
+
+            if (childId !== undefined) {
+                localVarQueryParameter['ChildId'] = childId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} [name] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFileManagementFileCreateFolderPost: async (name?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/FileManagement/File/CreateFolder`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (name !== undefined) {
+                localVarQueryParameter['name'] = name;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} [fileId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFileManagementFileDeleteFileDelete: async (fileId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/FileManagement/File/DeleteFile`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (fileId !== undefined) {
+                localVarQueryParameter['fileId'] = fileId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} [folderId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFileManagementFileDeleteFolderDelete: async (folderId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/FileManagement/File/DeleteFolder`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (folderId !== undefined) {
+                localVarQueryParameter['FolderId'] = folderId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} [id] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFileManagementFileGetFileGet: async (id?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/FileManagement/File/GetFile`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = id;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFileManagementFileGetUserFoldersFilesGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/FileManagement/File/GetUserFoldersFiles`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} [folderId] 
+         * @param {string} [fileId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFileManagementFileRemoveSubFileDelete: async (folderId?: string, fileId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/FileManagement/File/RemoveSubFile`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (folderId !== undefined) {
+                localVarQueryParameter['FolderId'] = folderId;
+            }
+
+            if (fileId !== undefined) {
+                localVarQueryParameter['FileId'] = fileId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} [parentId] 
+         * @param {string} [childId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFileManagementFileRemoveSubFolderDelete: async (parentId?: string, childId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/FileManagement/File/RemoveSubFolder`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (parentId !== undefined) {
+                localVarQueryParameter['ParentId'] = parentId;
+            }
+
+            if (childId !== undefined) {
+                localVarQueryParameter['ChildId'] = childId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {boolean} [isPublic] 
+         * @param {any} [file] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFileManagementFileUploadFilePost: async (isPublic?: boolean, file?: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/FileManagement/File/UploadFile`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
+
+            if (isPublic !== undefined) {
+                localVarQueryParameter['isPublic'] = isPublic;
+            }
+
+
+            if (file !== undefined) { 
+                localVarFormParams.append('file', file as any);
+            }
+    
+    
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * FileApi - functional programming interface
+ * @export
+ */
+export const FileApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = FileApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {string} [folderId] 
+         * @param {string} [fileId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiFileManagementFileAddSubFilePost(folderId?: string, fileId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiFileManagementFileAddSubFilePost(folderId, fileId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} [parentId] 
+         * @param {string} [childId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiFileManagementFileAddSubFolderPost(parentId?: string, childId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiFileManagementFileAddSubFolderPost(parentId, childId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} [name] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiFileManagementFileCreateFolderPost(name?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiFileManagementFileCreateFolderPost(name, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} [fileId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiFileManagementFileDeleteFileDelete(fileId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiFileManagementFileDeleteFileDelete(fileId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} [folderId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiFileManagementFileDeleteFolderDelete(folderId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiFileManagementFileDeleteFolderDelete(folderId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} [id] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiFileManagementFileGetFileGet(id?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiFileManagementFileGetFileGet(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiFileManagementFileGetUserFoldersFilesGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiFileManagementFileGetUserFoldersFilesGet(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} [folderId] 
+         * @param {string} [fileId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiFileManagementFileRemoveSubFileDelete(folderId?: string, fileId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiFileManagementFileRemoveSubFileDelete(folderId, fileId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} [parentId] 
+         * @param {string} [childId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiFileManagementFileRemoveSubFolderDelete(parentId?: string, childId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiFileManagementFileRemoveSubFolderDelete(parentId, childId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {boolean} [isPublic] 
+         * @param {any} [file] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiFileManagementFileUploadFilePost(isPublic?: boolean, file?: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiFileManagementFileUploadFilePost(isPublic, file, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * FileApi - factory interface
+ * @export
+ */
+export const FileApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = FileApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {string} [folderId] 
+         * @param {string} [fileId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFileManagementFileAddSubFilePost(folderId?: string, fileId?: string, options?: any): AxiosPromise<void> {
+            return localVarFp.apiFileManagementFileAddSubFilePost(folderId, fileId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} [parentId] 
+         * @param {string} [childId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFileManagementFileAddSubFolderPost(parentId?: string, childId?: string, options?: any): AxiosPromise<void> {
+            return localVarFp.apiFileManagementFileAddSubFolderPost(parentId, childId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} [name] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFileManagementFileCreateFolderPost(name?: string, options?: any): AxiosPromise<void> {
+            return localVarFp.apiFileManagementFileCreateFolderPost(name, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} [fileId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFileManagementFileDeleteFileDelete(fileId?: string, options?: any): AxiosPromise<void> {
+            return localVarFp.apiFileManagementFileDeleteFileDelete(fileId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} [folderId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFileManagementFileDeleteFolderDelete(folderId?: string, options?: any): AxiosPromise<void> {
+            return localVarFp.apiFileManagementFileDeleteFolderDelete(folderId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} [id] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFileManagementFileGetFileGet(id?: string, options?: any): AxiosPromise<string> {
+            return localVarFp.apiFileManagementFileGetFileGet(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFileManagementFileGetUserFoldersFilesGet(options?: any): AxiosPromise<void> {
+            return localVarFp.apiFileManagementFileGetUserFoldersFilesGet(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} [folderId] 
+         * @param {string} [fileId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFileManagementFileRemoveSubFileDelete(folderId?: string, fileId?: string, options?: any): AxiosPromise<void> {
+            return localVarFp.apiFileManagementFileRemoveSubFileDelete(folderId, fileId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} [parentId] 
+         * @param {string} [childId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFileManagementFileRemoveSubFolderDelete(parentId?: string, childId?: string, options?: any): AxiosPromise<void> {
+            return localVarFp.apiFileManagementFileRemoveSubFolderDelete(parentId, childId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {boolean} [isPublic] 
+         * @param {any} [file] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFileManagementFileUploadFilePost(isPublic?: boolean, file?: any, options?: any): AxiosPromise<string> {
+            return localVarFp.apiFileManagementFileUploadFilePost(isPublic, file, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * FileApi - object-oriented interface
+ * @export
+ * @class FileApi
+ * @extends {BaseAPI}
+ */
+export class FileApi extends BaseAPI {
+    /**
+     * 
+     * @param {string} [folderId] 
+     * @param {string} [fileId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FileApi
+     */
+    public apiFileManagementFileAddSubFilePost(folderId?: string, fileId?: string, options?: AxiosRequestConfig) {
+        return FileApiFp(this.configuration).apiFileManagementFileAddSubFilePost(folderId, fileId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} [parentId] 
+     * @param {string} [childId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FileApi
+     */
+    public apiFileManagementFileAddSubFolderPost(parentId?: string, childId?: string, options?: AxiosRequestConfig) {
+        return FileApiFp(this.configuration).apiFileManagementFileAddSubFolderPost(parentId, childId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} [name] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FileApi
+     */
+    public apiFileManagementFileCreateFolderPost(name?: string, options?: AxiosRequestConfig) {
+        return FileApiFp(this.configuration).apiFileManagementFileCreateFolderPost(name, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} [fileId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FileApi
+     */
+    public apiFileManagementFileDeleteFileDelete(fileId?: string, options?: AxiosRequestConfig) {
+        return FileApiFp(this.configuration).apiFileManagementFileDeleteFileDelete(fileId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} [folderId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FileApi
+     */
+    public apiFileManagementFileDeleteFolderDelete(folderId?: string, options?: AxiosRequestConfig) {
+        return FileApiFp(this.configuration).apiFileManagementFileDeleteFolderDelete(folderId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} [id] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FileApi
+     */
+    public apiFileManagementFileGetFileGet(id?: string, options?: AxiosRequestConfig) {
+        return FileApiFp(this.configuration).apiFileManagementFileGetFileGet(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FileApi
+     */
+    public apiFileManagementFileGetUserFoldersFilesGet(options?: AxiosRequestConfig) {
+        return FileApiFp(this.configuration).apiFileManagementFileGetUserFoldersFilesGet(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} [folderId] 
+     * @param {string} [fileId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FileApi
+     */
+    public apiFileManagementFileRemoveSubFileDelete(folderId?: string, fileId?: string, options?: AxiosRequestConfig) {
+        return FileApiFp(this.configuration).apiFileManagementFileRemoveSubFileDelete(folderId, fileId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} [parentId] 
+     * @param {string} [childId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FileApi
+     */
+    public apiFileManagementFileRemoveSubFolderDelete(parentId?: string, childId?: string, options?: AxiosRequestConfig) {
+        return FileApiFp(this.configuration).apiFileManagementFileRemoveSubFolderDelete(parentId, childId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {boolean} [isPublic] 
+     * @param {any} [file] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FileApi
+     */
+    public apiFileManagementFileUploadFilePost(isPublic?: boolean, file?: any, options?: AxiosRequestConfig) {
+        return FileApiFp(this.configuration).apiFileManagementFileUploadFilePost(isPublic, file, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

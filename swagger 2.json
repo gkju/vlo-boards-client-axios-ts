@@ -328,53 +328,6 @@
         }
       }
     },
-    "/api/Articles/Article/GetTags": {
-      "get": {
-        "tags": [
-          "Article"
-        ],
-        "parameters": [
-          {
-            "name": "ArticleId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AccountsData.Models.DataModels.Tag"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AccountsData.Models.DataModels.Tag"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AccountsData.Models.DataModels.Tag"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/Articles/Article/SearchArticles": {
       "get": {
         "tags": [
@@ -384,437 +337,9 @@
           {
             "name": "query",
             "in": "query",
-            "schema": {
-              "type": "string",
-              "default": ""
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/FileManagement/File/GetUserFoldersFiles": {
-      "get": {
-        "tags": [
-          "File"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/FileManagement/File/CreateFolder": {
-      "post": {
-        "tags": [
-          "File"
-        ],
-        "parameters": [
-          {
-            "name": "name",
-            "in": "query",
+            "required": true,
             "schema": {
               "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/FileManagement/File/AddSubFolder": {
-      "post": {
-        "tags": [
-          "File"
-        ],
-        "parameters": [
-          {
-            "name": "ParentId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "ChildId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/FileManagement/File/AddSubFile": {
-      "post": {
-        "tags": [
-          "File"
-        ],
-        "parameters": [
-          {
-            "name": "FolderId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "FileId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/FileManagement/File/RemoveSubFolder": {
-      "delete": {
-        "tags": [
-          "File"
-        ],
-        "parameters": [
-          {
-            "name": "ParentId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "ChildId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/FileManagement/File/RemoveSubFile": {
-      "delete": {
-        "tags": [
-          "File"
-        ],
-        "parameters": [
-          {
-            "name": "FolderId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "FileId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/FileManagement/File/DeleteFolder": {
-      "delete": {
-        "tags": [
-          "File"
-        ],
-        "parameters": [
-          {
-            "name": "FolderId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/FileManagement/File/DeleteFile": {
-      "delete": {
-        "tags": [
-          "File"
-        ],
-        "parameters": [
-          {
-            "name": "fileId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/FileManagement/File/UploadFile": {
-      "post": {
-        "tags": [
-          "File"
-        ],
-        "parameters": [
-          {
-            "name": "isPublic",
-            "in": "query",
-            "schema": {
-              "type": "boolean"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "file": {
-                    "type": "string",
-                    "format": "binary"
-                  }
-                }
-              },
-              "encoding": {
-                "file": {
-                  "style": "form"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Server Error"
-          }
-        }
-      }
-    },
-    "/api/FileManagement/File/GetFile": {
-      "get": {
-        "tags": [
-          "File"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Server Error"
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Tags/Tag": {
-      "post": {
-        "tags": [
-          "Tag"
-        ],
-        "parameters": [
-          {
-            "name": "tagContent",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/Tags/Tag/AddToArticle": {
-      "post": {
-        "tags": [
-          "Tag"
-        ],
-        "parameters": [
-          {
-            "name": "articleId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "tagContent",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/Tags/Tag/RemoveFromArticle": {
-      "delete": {
-        "tags": [
-          "Tag"
-        ],
-        "parameters": [
-          {
-            "name": "articleId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "tagContent",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/Tags/Tag/Search": {
-      "get": {
-        "tags": [
-          "Tag"
-        ],
-        "parameters": [
-          {
-            "name": "query",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "default": ""
             }
           }
         ],
@@ -1003,6 +528,9 @@
             "type": "string",
             "nullable": true
           },
+          "owner": {
+            "$ref": "#/components/schemas/AccountsData.Models.DataModels.ApplicationUser"
+          },
           "byteSize": {
             "type": "integer",
             "format": "int64"
@@ -1024,17 +552,19 @@
             "type": "string",
             "nullable": true
           },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
           "ownerId": {
             "type": "string",
             "nullable": true
           },
+          "owner": {
+            "$ref": "#/components/schemas/AccountsData.Models.DataModels.ApplicationUser"
+          },
           "masterFolderId": {
             "type": "string",
             "nullable": true
+          },
+          "masterFolder": {
+            "$ref": "#/components/schemas/AccountsData.Models.DataModels.Folder"
           }
         },
         "additionalProperties": false
@@ -1052,6 +582,9 @@
           "ownerId": {
             "type": "string",
             "nullable": true
+          },
+          "owner": {
+            "$ref": "#/components/schemas/AccountsData.Models.DataModels.ApplicationUser"
           }
         },
         "additionalProperties": false
@@ -1063,9 +596,8 @@
             "type": "string",
             "nullable": true
           },
-          "authorId": {
-            "type": "string",
-            "nullable": true
+          "author": {
+            "$ref": "#/components/schemas/AccountsData.Models.DataModels.ApplicationUser"
           },
           "content": {
             "type": "string",
@@ -1073,33 +605,6 @@
           }
         },
         "additionalProperties": false
-      },
-      "Microsoft.AspNetCore.Mvc.ProblemDetails": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "nullable": true
-          },
-          "title": {
-            "type": "string",
-            "nullable": true
-          },
-          "status": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "detail": {
-            "type": "string",
-            "nullable": true
-          },
-          "instance": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": { }
       },
       "Revision": {
         "type": "object",
@@ -1118,13 +623,6 @@
           "modifiedOn": {
             "type": "string",
             "format": "date-time"
-          },
-          "articleId": {
-            "type": "string",
-            "nullable": true
-          },
-          "article": {
-            "$ref": "#/components/schemas/AccountsData.Models.DataModels.Article"
           }
         },
         "additionalProperties": false
