@@ -1,6 +1,6 @@
 {
   "name": "@gkju/vlo-boards-client-axios-ts",
-  "version": "1.6.2",
+  "version": "1.7.0",
   "packageManager": "pnpm@6.11.0",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
