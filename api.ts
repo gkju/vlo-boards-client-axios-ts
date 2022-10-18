@@ -113,12 +113,6 @@ export interface AccountsDataModelsDataModelsApplicationUser {
     'socialCredit'?: number;
     /**
      * 
-     * @type {Array<AccountsDataModelsDataModelsArticle>}
-     * @memberof AccountsDataModelsDataModelsApplicationUser
-     */
-    'articles'?: Array<AccountsDataModelsDataModelsArticle> | null;
-    /**
-     * 
      * @type {number}
      * @memberof AccountsDataModelsDataModelsApplicationUser
      */
@@ -428,12 +422,6 @@ export interface Revision {
     'revisionId'?: string | null;
     /**
      * 
-     * @type {AccountsDataModelsDataModelsApplicationUser}
-     * @memberof Revision
-     */
-    'author'?: AccountsDataModelsDataModelsApplicationUser;
-    /**
-     * 
      * @type {string}
      * @memberof Revision
      */
@@ -450,12 +438,6 @@ export interface Revision {
      * @memberof Revision
      */
     'articleId'?: string | null;
-    /**
-     * 
-     * @type {AccountsDataModelsDataModelsArticle}
-     * @memberof Revision
-     */
-    'article'?: AccountsDataModelsDataModelsArticle;
 }
 /**
  * 
@@ -1651,6 +1633,69 @@ export const FileApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
+         * @param {string} [id] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFileManagementFileGetFileInfoGet: async (id?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/FileManagement/File/GetFileInfo`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = id;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFileManagementFileGetMyArticlesGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/FileManagement/File/GetMyArticles`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -1873,6 +1918,25 @@ export const FileApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} [id] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiFileManagementFileGetFileInfoGet(id?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiFileManagementFileGetFileInfoGet(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiFileManagementFileGetMyArticlesGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<AccountsDataModelsDataModelsArticle>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiFileManagementFileGetMyArticlesGet(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -1978,6 +2042,23 @@ export const FileApiFactory = function (configuration?: Configuration, basePath?
          */
         apiFileManagementFileGetFileGet(id?: string, options?: any): AxiosPromise<string> {
             return localVarFp.apiFileManagementFileGetFileGet(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} [id] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFileManagementFileGetFileInfoGet(id?: string, options?: any): AxiosPromise<string> {
+            return localVarFp.apiFileManagementFileGetFileInfoGet(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiFileManagementFileGetMyArticlesGet(options?: any): AxiosPromise<Array<AccountsDataModelsDataModelsArticle>> {
+            return localVarFp.apiFileManagementFileGetMyArticlesGet(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2093,6 +2174,27 @@ export class FileApi extends BaseAPI {
      */
     public apiFileManagementFileGetFileGet(id?: string, options?: AxiosRequestConfig) {
         return FileApiFp(this.configuration).apiFileManagementFileGetFileGet(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} [id] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FileApi
+     */
+    public apiFileManagementFileGetFileInfoGet(id?: string, options?: AxiosRequestConfig) {
+        return FileApiFp(this.configuration).apiFileManagementFileGetFileInfoGet(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FileApi
+     */
+    public apiFileManagementFileGetMyArticlesGet(options?: AxiosRequestConfig) {
+        return FileApiFp(this.configuration).apiFileManagementFileGetMyArticlesGet(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

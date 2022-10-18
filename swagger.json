@@ -726,6 +726,108 @@
         }
       }
     },
+    "/api/FileManagement/File/GetFileInfo": {
+      "get": {
+        "tags": [
+          "File"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/FileManagement/File/GetMyArticles": {
+      "get": {
+        "tags": [
+          "File"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountsData.Models.DataModels.Article"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountsData.Models.DataModels.Article"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountsData.Models.DataModels.Article"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
     "/api/Tags/Tag": {
       "post": {
         "tags": [
@@ -882,13 +984,6 @@
           "socialCredit": {
             "type": "number",
             "format": "double"
-          },
-          "articles": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AccountsData.Models.DataModels.Article"
-            },
-            "nullable": true
           },
           "usedBytes": {
             "type": "integer",
@@ -1108,9 +1203,6 @@
             "type": "string",
             "nullable": true
           },
-          "author": {
-            "$ref": "#/components/schemas/AccountsData.Models.DataModels.ApplicationUser"
-          },
           "contentJson": {
             "type": "string",
             "nullable": true
@@ -1122,9 +1214,6 @@
           "articleId": {
             "type": "string",
             "nullable": true
-          },
-          "article": {
-            "$ref": "#/components/schemas/AccountsData.Models.DataModels.Article"
           }
         },
         "additionalProperties": false
