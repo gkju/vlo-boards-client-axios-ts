@@ -1637,8 +1637,8 @@ export const FileApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiFileManagementFileGetFileInfoGet: async (id?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/FileManagement/File/GetFileInfo`;
+        apiFileManagementFileGetFilesInfoGet: async (id?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/FileManagement/File/GetFilesInfo`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1922,8 +1922,8 @@ export const FileApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiFileManagementFileGetFileInfoGet(id?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiFileManagementFileGetFileInfoGet(id, options);
+        async apiFileManagementFileGetFilesInfoGet(id?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AccountsDataModelsDataModelsFile>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiFileManagementFileGetFilesInfoGet(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -2049,8 +2049,8 @@ export const FileApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiFileManagementFileGetFileInfoGet(id?: string, options?: any): AxiosPromise<string> {
-            return localVarFp.apiFileManagementFileGetFileInfoGet(id, options).then((request) => request(axios, basePath));
+        apiFileManagementFileGetFilesInfoGet(id?: string, options?: any): AxiosPromise<AccountsDataModelsDataModelsFile> {
+            return localVarFp.apiFileManagementFileGetFilesInfoGet(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2183,8 +2183,8 @@ export class FileApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FileApi
      */
-    public apiFileManagementFileGetFileInfoGet(id?: string, options?: AxiosRequestConfig) {
-        return FileApiFp(this.configuration).apiFileManagementFileGetFileInfoGet(id, options).then((request) => request(this.axios, this.basePath));
+    public apiFileManagementFileGetFilesInfoGet(id?: string, options?: AxiosRequestConfig) {
+        return FileApiFp(this.configuration).apiFileManagementFileGetFilesInfoGet(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

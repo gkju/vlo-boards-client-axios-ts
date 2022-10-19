@@ -726,7 +726,7 @@
         }
       }
     },
-    "/api/FileManagement/File/GetFileInfo": {
+    "/api/FileManagement/File/GetFilesInfo": {
       "get": {
         "tags": [
           "File"
@@ -746,17 +746,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/AccountsData.Models.DataModels.File"
                 }
               },
               "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/AccountsData.Models.DataModels.File"
                 }
               },
               "text/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/AccountsData.Models.DataModels.File"
                 }
               }
             }
