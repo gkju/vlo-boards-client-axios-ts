@@ -9,6 +9,62 @@
     "version": "v1"
   },
   "paths": {
+    "/api/Articles/Article/AddComment": {
+      "post": {
+        "tags": [
+          "Article"
+        ],
+        "parameters": [
+          {
+            "name": "content",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ArticleId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Articles/Article/AddReaction": {
+      "post": {
+        "tags": [
+          "Article"
+        ],
+        "parameters": [
+          {
+            "name": "reactionType",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/AccountsData.Models.DataModels.ReactionType"
+            }
+          },
+          {
+            "name": "ArticleId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Articles/Article": {
       "post": {
         "tags": [
@@ -387,6 +443,24 @@
             "schema": {
               "type": "string",
               "default": ""
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
             }
           }
         ],
@@ -985,6 +1059,13 @@
             "type": "number",
             "format": "double"
           },
+          "hasPassword": {
+            "type": "boolean"
+          },
+          "fidoCount": {
+            "type": "integer",
+            "format": "int32"
+          },
           "usedBytes": {
             "type": "integer",
             "format": "int64"
@@ -1062,6 +1143,52 @@
           },
           "picture": {
             "$ref": "#/components/schemas/AccountsData.Models.DataModels.File"
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountsData.Models.DataModels.Comment"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountsData.Models.DataModels.Comment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "author": {
+            "$ref": "#/components/schemas/AccountsData.Models.DataModels.ApplicationUser"
+          },
+          "content": {
+            "type": "string",
+            "nullable": true
+          },
+          "file": {
+            "$ref": "#/components/schemas/AccountsData.Models.DataModels.File"
+          },
+          "createdOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modifiedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "inReplyTo": {
+            "$ref": "#/components/schemas/AccountsData.Models.DataModels.Comment"
+          },
+          "reactions": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountsData.Models.DataModels.Reaction"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1150,6 +1277,33 @@
           }
         },
         "additionalProperties": false
+      },
+      "AccountsData.Models.DataModels.Reaction": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "user": {
+            "$ref": "#/components/schemas/AccountsData.Models.DataModels.ApplicationUser"
+          },
+          "reactionType": {
+            "$ref": "#/components/schemas/AccountsData.Models.DataModels.ReactionType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountsData.Models.DataModels.ReactionType": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "integer",
+        "format": "int32"
       },
       "AccountsData.Models.DataModels.Tag": {
         "type": "object",

@@ -113,6 +113,18 @@ export interface AccountsDataModelsDataModelsApplicationUser {
     'socialCredit'?: number;
     /**
      * 
+     * @type {boolean}
+     * @memberof AccountsDataModelsDataModelsApplicationUser
+     */
+    'hasPassword'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountsDataModelsDataModelsApplicationUser
+     */
+    'fidoCount'?: number;
+    /**
+     * 
      * @type {number}
      * @memberof AccountsDataModelsDataModelsApplicationUser
      */
@@ -214,6 +226,67 @@ export interface AccountsDataModelsDataModelsArticle {
      * @memberof AccountsDataModelsDataModelsArticle
      */
     'picture'?: AccountsDataModelsDataModelsFile;
+    /**
+     * 
+     * @type {Array<AccountsDataModelsDataModelsComment>}
+     * @memberof AccountsDataModelsDataModelsArticle
+     */
+    'comments'?: Array<AccountsDataModelsDataModelsComment> | null;
+}
+/**
+ * 
+ * @export
+ * @interface AccountsDataModelsDataModelsComment
+ */
+export interface AccountsDataModelsDataModelsComment {
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsComment
+     */
+    'id'?: string | null;
+    /**
+     * 
+     * @type {AccountsDataModelsDataModelsApplicationUser}
+     * @memberof AccountsDataModelsDataModelsComment
+     */
+    'author'?: AccountsDataModelsDataModelsApplicationUser;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsComment
+     */
+    'content'?: string | null;
+    /**
+     * 
+     * @type {AccountsDataModelsDataModelsFile}
+     * @memberof AccountsDataModelsDataModelsComment
+     */
+    'file'?: AccountsDataModelsDataModelsFile;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsComment
+     */
+    'createdOn'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsComment
+     */
+    'modifiedOn'?: string;
+    /**
+     * 
+     * @type {AccountsDataModelsDataModelsComment}
+     * @memberof AccountsDataModelsDataModelsComment
+     */
+    'inReplyTo'?: AccountsDataModelsDataModelsComment;
+    /**
+     * 
+     * @type {Set<AccountsDataModelsDataModelsReaction>}
+     * @memberof AccountsDataModelsDataModelsComment
+     */
+    'reactions'?: Set<AccountsDataModelsDataModelsReaction> | null;
 }
 /**
  * 
@@ -344,6 +417,48 @@ export interface AccountsDataModelsDataModelsProfilePicture {
      */
     'ownerId'?: string | null;
 }
+/**
+ * 
+ * @export
+ * @interface AccountsDataModelsDataModelsReaction
+ */
+export interface AccountsDataModelsDataModelsReaction {
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsDataModelsDataModelsReaction
+     */
+    'id'?: string | null;
+    /**
+     * 
+     * @type {AccountsDataModelsDataModelsApplicationUser}
+     * @memberof AccountsDataModelsDataModelsReaction
+     */
+    'user'?: AccountsDataModelsDataModelsApplicationUser;
+    /**
+     * 
+     * @type {AccountsDataModelsDataModelsReactionType}
+     * @memberof AccountsDataModelsDataModelsReaction
+     */
+    'reactionType'?: AccountsDataModelsDataModelsReactionType;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const AccountsDataModelsDataModelsReactionType = {
+    NUMBER_0: 0,
+    NUMBER_1: 1,
+    NUMBER_2: 2,
+    NUMBER_3: 3,
+    NUMBER_4: 4
+} as const;
+
+export type AccountsDataModelsDataModelsReactionType = typeof AccountsDataModelsDataModelsReactionType[keyof typeof AccountsDataModelsDataModelsReactionType];
+
+
 /**
  * 
  * @export
@@ -543,6 +658,45 @@ export const ArticleApiAxiosParamCreator = function (configuration?: Configurati
     return {
         /**
          * 
+         * @param {string} [content] 
+         * @param {string} [articleId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiArticlesArticleAddCommentPost: async (content?: string, articleId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Articles/Article/AddComment`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (content !== undefined) {
+                localVarQueryParameter['content'] = content;
+            }
+
+            if (articleId !== undefined) {
+                localVarQueryParameter['ArticleId'] = articleId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {VloMainAreasArticleUserArticleInput} [vloMainAreasArticleUserArticleInput] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -568,6 +722,45 @@ export const ArticleApiAxiosParamCreator = function (configuration?: Configurati
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(vloMainAreasArticleUserArticleInput, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {AccountsDataModelsDataModelsReactionType} [reactionType] 
+         * @param {string} [articleId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiArticlesArticleAddReactionPost: async (reactionType?: AccountsDataModelsDataModelsReactionType, articleId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Articles/Article/AddReaction`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (reactionType !== undefined) {
+                localVarQueryParameter['reactionType'] = reactionType;
+            }
+
+            if (articleId !== undefined) {
+                localVarQueryParameter['ArticleId'] = articleId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -809,10 +1002,12 @@ export const ArticleApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {string} [query] 
+         * @param {number} [count] 
+         * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiArticlesArticleSearchArticlesGet: async (query?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiArticlesArticleSearchArticlesGet: async (query?: string, count?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/Articles/Article/SearchArticles`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -827,6 +1022,14 @@ export const ArticleApiAxiosParamCreator = function (configuration?: Configurati
 
             if (query !== undefined) {
                 localVarQueryParameter['query'] = query;
+            }
+
+            if (count !== undefined) {
+                localVarQueryParameter['count'] = count;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
             }
 
 
@@ -998,12 +1201,34 @@ export const ArticleApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {string} [content] 
+         * @param {string} [articleId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiArticlesArticleAddCommentPost(content?: string, articleId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiArticlesArticleAddCommentPost(content, articleId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {VloMainAreasArticleUserArticleInput} [vloMainAreasArticleUserArticleInput] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async apiArticlesArticleAddEditorPut(vloMainAreasArticleUserArticleInput?: VloMainAreasArticleUserArticleInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiArticlesArticleAddEditorPut(vloMainAreasArticleUserArticleInput, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {AccountsDataModelsDataModelsReactionType} [reactionType] 
+         * @param {string} [articleId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiArticlesArticleAddReactionPost(reactionType?: AccountsDataModelsDataModelsReactionType, articleId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiArticlesArticleAddReactionPost(reactionType, articleId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -1079,11 +1304,13 @@ export const ArticleApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} [query] 
+         * @param {number} [count] 
+         * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiArticlesArticleSearchArticlesGet(query?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiArticlesArticleSearchArticlesGet(query, options);
+        async apiArticlesArticleSearchArticlesGet(query?: string, count?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiArticlesArticleSearchArticlesGet(query, count, offset, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -1139,12 +1366,32 @@ export const ArticleApiFactory = function (configuration?: Configuration, basePa
     return {
         /**
          * 
+         * @param {string} [content] 
+         * @param {string} [articleId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiArticlesArticleAddCommentPost(content?: string, articleId?: string, options?: any): AxiosPromise<void> {
+            return localVarFp.apiArticlesArticleAddCommentPost(content, articleId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {VloMainAreasArticleUserArticleInput} [vloMainAreasArticleUserArticleInput] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         apiArticlesArticleAddEditorPut(vloMainAreasArticleUserArticleInput?: VloMainAreasArticleUserArticleInput, options?: any): AxiosPromise<void> {
             return localVarFp.apiArticlesArticleAddEditorPut(vloMainAreasArticleUserArticleInput, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {AccountsDataModelsDataModelsReactionType} [reactionType] 
+         * @param {string} [articleId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiArticlesArticleAddReactionPost(reactionType?: AccountsDataModelsDataModelsReactionType, articleId?: string, options?: any): AxiosPromise<void> {
+            return localVarFp.apiArticlesArticleAddReactionPost(reactionType, articleId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1212,11 +1459,13 @@ export const ArticleApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @param {string} [query] 
+         * @param {number} [count] 
+         * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiArticlesArticleSearchArticlesGet(query?: string, options?: any): AxiosPromise<void> {
-            return localVarFp.apiArticlesArticleSearchArticlesGet(query, options).then((request) => request(axios, basePath));
+        apiArticlesArticleSearchArticlesGet(query?: string, count?: number, offset?: number, options?: any): AxiosPromise<void> {
+            return localVarFp.apiArticlesArticleSearchArticlesGet(query, count, offset, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1267,6 +1516,18 @@ export const ArticleApiFactory = function (configuration?: Configuration, basePa
 export class ArticleApi extends BaseAPI {
     /**
      * 
+     * @param {string} [content] 
+     * @param {string} [articleId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ArticleApi
+     */
+    public apiArticlesArticleAddCommentPost(content?: string, articleId?: string, options?: AxiosRequestConfig) {
+        return ArticleApiFp(this.configuration).apiArticlesArticleAddCommentPost(content, articleId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @param {VloMainAreasArticleUserArticleInput} [vloMainAreasArticleUserArticleInput] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1274,6 +1535,18 @@ export class ArticleApi extends BaseAPI {
      */
     public apiArticlesArticleAddEditorPut(vloMainAreasArticleUserArticleInput?: VloMainAreasArticleUserArticleInput, options?: AxiosRequestConfig) {
         return ArticleApiFp(this.configuration).apiArticlesArticleAddEditorPut(vloMainAreasArticleUserArticleInput, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {AccountsDataModelsDataModelsReactionType} [reactionType] 
+     * @param {string} [articleId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ArticleApi
+     */
+    public apiArticlesArticleAddReactionPost(reactionType?: AccountsDataModelsDataModelsReactionType, articleId?: string, options?: AxiosRequestConfig) {
+        return ArticleApiFp(this.configuration).apiArticlesArticleAddReactionPost(reactionType, articleId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1356,12 +1629,14 @@ export class ArticleApi extends BaseAPI {
     /**
      * 
      * @param {string} [query] 
+     * @param {number} [count] 
+     * @param {number} [offset] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ArticleApi
      */
-    public apiArticlesArticleSearchArticlesGet(query?: string, options?: AxiosRequestConfig) {
-        return ArticleApiFp(this.configuration).apiArticlesArticleSearchArticlesGet(query, options).then((request) => request(this.axios, this.basePath));
+    public apiArticlesArticleSearchArticlesGet(query?: string, count?: number, offset?: number, options?: AxiosRequestConfig) {
+        return ArticleApiFp(this.configuration).apiArticlesArticleSearchArticlesGet(query, count, offset, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

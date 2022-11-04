@@ -6,7 +6,7 @@ specifiers:
 
 dependencies:
   axios: 0.27.2
-  typescript: 4.9.0-dev.20220831
+  typescript: 5.0.0-dev.20221103
 
 packages:
 
@@ -17,7 +17,7 @@ packages:
   /axios/0.27.2:
     resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
     dependencies:
-      follow-redirects: 1.15.1
+      follow-redirects: 1.15.2
       form-data: 4.0.0
     transitivePeerDependencies:
       - debug
@@ -35,8 +35,8 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: false
 
-  /follow-redirects/1.15.1:
-    resolution: {integrity: sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==}
+  /follow-redirects/1.15.2:
+    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
     engines: {node: '>=4.0'}
     peerDependencies:
       debug: '*'
@@ -66,8 +66,8 @@ packages:
       mime-db: 1.52.0
     dev: false
 
-  /typescript/4.9.0-dev.20220831:
-    resolution: {integrity: sha512-FXVLQI/P9R7uT/I0ODGrIPmV9uDlQXufoe+RUcvZOvTtLzk2Kd1H9rr+e3l6hiSho6ikrnvews2LWF5AulwO/w==}
+  /typescript/5.0.0-dev.20221103:
+    resolution: {integrity: sha512-hfqcsmiJ+5ktli1OAkwu4PyDDJ3kWW3tiUofd2t1uxwmni3ZT3Mrv1m2dZFg9VNDKqHrkt49izB3tAtD2bsyGw==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: false
