@@ -1144,6 +1144,14 @@
           "picture": {
             "$ref": "#/components/schemas/AccountsData.Models.DataModels.File"
           },
+          "reactions": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountsData.Models.DataModels.Reaction"
+            },
+            "nullable": true
+          },
           "comments": {
             "type": "array",
             "items": {

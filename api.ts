@@ -228,6 +228,12 @@ export interface AccountsDataModelsDataModelsArticle {
     'picture'?: AccountsDataModelsDataModelsFile;
     /**
      * 
+     * @type {Set<AccountsDataModelsDataModelsReaction>}
+     * @memberof AccountsDataModelsDataModelsArticle
+     */
+    'reactions'?: Set<AccountsDataModelsDataModelsReaction> | null;
+    /**
+     * 
      * @type {Array<AccountsDataModelsDataModelsComment>}
      * @memberof AccountsDataModelsDataModelsArticle
      */
