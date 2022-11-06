@@ -228,10 +228,10 @@ export interface AccountsDataModelsDataModelsArticle {
     'picture'?: AccountsDataModelsDataModelsFile;
     /**
      * 
-     * @type {Set<AccountsDataModelsDataModelsReaction>}
+     * @type {Array<AccountsDataModelsDataModelsReaction>}
      * @memberof AccountsDataModelsDataModelsArticle
      */
-    'reactions'?: Set<AccountsDataModelsDataModelsReaction> | null;
+    'reactions'?: Array<AccountsDataModelsDataModelsReaction> | null;
     /**
      * 
      * @type {Array<AccountsDataModelsDataModelsComment>}
@@ -289,10 +289,10 @@ export interface AccountsDataModelsDataModelsComment {
     'inReplyTo'?: AccountsDataModelsDataModelsComment;
     /**
      * 
-     * @type {Set<AccountsDataModelsDataModelsReaction>}
+     * @type {Array<AccountsDataModelsDataModelsReaction>}
      * @memberof AccountsDataModelsDataModelsComment
      */
-    'reactions'?: Set<AccountsDataModelsDataModelsReaction> | null;
+    'reactions'?: Array<AccountsDataModelsDataModelsReaction> | null;
 }
 /**
  * 
@@ -435,12 +435,6 @@ export interface AccountsDataModelsDataModelsReaction {
      * @memberof AccountsDataModelsDataModelsReaction
      */
     'id'?: string | null;
-    /**
-     * 
-     * @type {AccountsDataModelsDataModelsApplicationUser}
-     * @memberof AccountsDataModelsDataModelsReaction
-     */
-    'user'?: AccountsDataModelsDataModelsApplicationUser;
     /**
      * 
      * @type {AccountsDataModelsDataModelsReactionType}
@@ -760,6 +754,133 @@ export const ArticleApiAxiosParamCreator = function (configuration?: Configurati
 
             if (articleId !== undefined) {
                 localVarQueryParameter['ArticleId'] = articleId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {AccountsDataModelsDataModelsReactionType} [reactionType] 
+         * @param {string} [articleId] 
+         * @param {string} [commentId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiArticlesArticleAddReactionToCommentPost: async (reactionType?: AccountsDataModelsDataModelsReactionType, articleId?: string, commentId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Articles/Article/AddReactionToComment`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (reactionType !== undefined) {
+                localVarQueryParameter['reactionType'] = reactionType;
+            }
+
+            if (articleId !== undefined) {
+                localVarQueryParameter['ArticleId'] = articleId;
+            }
+
+            if (commentId !== undefined) {
+                localVarQueryParameter['commentId'] = commentId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} [content] 
+         * @param {string} [commentId] 
+         * @param {string} [articleId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiArticlesArticleAddReplyArticlePost: async (content?: string, commentId?: string, articleId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Articles/Article/AddReplyArticle`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (content !== undefined) {
+                localVarQueryParameter['content'] = content;
+            }
+
+            if (commentId !== undefined) {
+                localVarQueryParameter['commentId'] = commentId;
+            }
+
+            if (articleId !== undefined) {
+                localVarQueryParameter['articleId'] = articleId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} [commentId] 
+         * @param {string} [articleId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiArticlesArticleDeleteArticleCommentDelete: async (commentId?: string, articleId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Articles/Article/DeleteArticleComment`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (commentId !== undefined) {
+                localVarQueryParameter['commentId'] = commentId;
+            }
+
+            if (articleId !== undefined) {
+                localVarQueryParameter['articleId'] = articleId;
             }
 
 
@@ -1239,6 +1360,41 @@ export const ArticleApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {AccountsDataModelsDataModelsReactionType} [reactionType] 
+         * @param {string} [articleId] 
+         * @param {string} [commentId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiArticlesArticleAddReactionToCommentPost(reactionType?: AccountsDataModelsDataModelsReactionType, articleId?: string, commentId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiArticlesArticleAddReactionToCommentPost(reactionType, articleId, commentId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} [content] 
+         * @param {string} [commentId] 
+         * @param {string} [articleId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiArticlesArticleAddReplyArticlePost(content?: string, commentId?: string, articleId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiArticlesArticleAddReplyArticlePost(content, commentId, articleId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} [commentId] 
+         * @param {string} [articleId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiArticlesArticleDeleteArticleCommentDelete(commentId?: string, articleId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiArticlesArticleDeleteArticleCommentDelete(commentId, articleId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {string} [articleId] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1401,6 +1557,38 @@ export const ArticleApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @param {AccountsDataModelsDataModelsReactionType} [reactionType] 
+         * @param {string} [articleId] 
+         * @param {string} [commentId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiArticlesArticleAddReactionToCommentPost(reactionType?: AccountsDataModelsDataModelsReactionType, articleId?: string, commentId?: string, options?: any): AxiosPromise<void> {
+            return localVarFp.apiArticlesArticleAddReactionToCommentPost(reactionType, articleId, commentId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} [content] 
+         * @param {string} [commentId] 
+         * @param {string} [articleId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiArticlesArticleAddReplyArticlePost(content?: string, commentId?: string, articleId?: string, options?: any): AxiosPromise<void> {
+            return localVarFp.apiArticlesArticleAddReplyArticlePost(content, commentId, articleId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} [commentId] 
+         * @param {string} [articleId] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiArticlesArticleDeleteArticleCommentDelete(commentId?: string, articleId?: string, options?: any): AxiosPromise<void> {
+            return localVarFp.apiArticlesArticleDeleteArticleCommentDelete(commentId, articleId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {string} [articleId] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1553,6 +1741,44 @@ export class ArticleApi extends BaseAPI {
      */
     public apiArticlesArticleAddReactionPost(reactionType?: AccountsDataModelsDataModelsReactionType, articleId?: string, options?: AxiosRequestConfig) {
         return ArticleApiFp(this.configuration).apiArticlesArticleAddReactionPost(reactionType, articleId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {AccountsDataModelsDataModelsReactionType} [reactionType] 
+     * @param {string} [articleId] 
+     * @param {string} [commentId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ArticleApi
+     */
+    public apiArticlesArticleAddReactionToCommentPost(reactionType?: AccountsDataModelsDataModelsReactionType, articleId?: string, commentId?: string, options?: AxiosRequestConfig) {
+        return ArticleApiFp(this.configuration).apiArticlesArticleAddReactionToCommentPost(reactionType, articleId, commentId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} [content] 
+     * @param {string} [commentId] 
+     * @param {string} [articleId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ArticleApi
+     */
+    public apiArticlesArticleAddReplyArticlePost(content?: string, commentId?: string, articleId?: string, options?: AxiosRequestConfig) {
+        return ArticleApiFp(this.configuration).apiArticlesArticleAddReplyArticlePost(content, commentId, articleId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} [commentId] 
+     * @param {string} [articleId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ArticleApi
+     */
+    public apiArticlesArticleDeleteArticleCommentDelete(commentId?: string, articleId?: string, options?: AxiosRequestConfig) {
+        return ArticleApiFp(this.configuration).apiArticlesArticleDeleteArticleCommentDelete(commentId, articleId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

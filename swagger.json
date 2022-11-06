@@ -37,6 +37,104 @@
         }
       }
     },
+    "/api/Articles/Article/AddReplyArticle": {
+      "post": {
+        "tags": [
+          "Article"
+        ],
+        "parameters": [
+          {
+            "name": "content",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "commentId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "articleId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Articles/Article/DeleteArticleComment": {
+      "delete": {
+        "tags": [
+          "Article"
+        ],
+        "parameters": [
+          {
+            "name": "commentId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "articleId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Articles/Article/AddReactionToComment": {
+      "post": {
+        "tags": [
+          "Article"
+        ],
+        "parameters": [
+          {
+            "name": "reactionType",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/AccountsData.Models.DataModels.ReactionType"
+            }
+          },
+          {
+            "name": "ArticleId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "commentId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Articles/Article/AddReaction": {
       "post": {
         "tags": [
@@ -1145,7 +1243,6 @@
             "$ref": "#/components/schemas/AccountsData.Models.DataModels.File"
           },
           "reactions": {
-            "uniqueItems": true,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/AccountsData.Models.DataModels.Reaction"
@@ -1191,7 +1288,6 @@
             "$ref": "#/components/schemas/AccountsData.Models.DataModels.Comment"
           },
           "reactions": {
-            "uniqueItems": true,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/AccountsData.Models.DataModels.Reaction"
@@ -1292,9 +1388,6 @@
           "id": {
             "type": "string",
             "nullable": true
-          },
-          "user": {
-            "$ref": "#/components/schemas/AccountsData.Models.DataModels.ApplicationUser"
           },
           "reactionType": {
             "$ref": "#/components/schemas/AccountsData.Models.DataModels.ReactionType"
